@@ -1,0 +1,63 @@
+* {
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  background: #000;
+  color: #fff;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  overflow: hidden;
+}
+
+.pad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 2fr 1fr 1fr;
+  gap: 20px;
+  padding: 10px;
+  height: 100vh;
+  width: 100vw;
+}
+
+.pad-btn {
+  --btn-color: #fefcfc;
+  --btn-text: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--btn-color);
+  color: var(--btn-text);
+  border: 4px solid color-mix(in srgb, var(--btn-color) 65%, rgb(252, 252, 252));
+  border-radius: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  touch-action: manipulation;
+  padding: 0;
+  transition: transform 0.05s ease;
+  box-shadow: 4px 4px 0px 0px rgb(199, 199, 199);
+}
+
+.pad-btn__label {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-align: center;
+  line-height: 1.1;
+  padding: 0 10px;
+}
+
+.pad-btn:active {
+  --btn-color: #ff6b00;
+  --btn-text: #000;
+  transform: scale(0.97);
+  background: color-mix(in srgb, var(--btn-color) 65%, rgb(0, 0, 0));
+}
