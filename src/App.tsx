@@ -49,11 +49,18 @@ function PadButton({ button }: { button: ButtonConfig }) {
 
 function App() {
   return (
-    <main className="pad">
-      {BUTTONS.map((b) => (
-        <PadButton key={b.id} button={b} />
-      ))}
-    </main>
+    <div className="app">
+      <div className="drag-bar" data-tauri-drag-region>
+        <span className="drag-bar__hint" data-tauri-drag-region>
+          ⋮⋮⋮ drag to move ⋮⋮⋮
+        </span>
+      </div>
+      <main className="pad">
+        {BUTTONS.map((b) => (
+          <PadButton key={b.id} button={b} />
+        ))}
+      </main>
+    </div>
   );
 }
 

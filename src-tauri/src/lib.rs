@@ -59,6 +59,7 @@ fn configure_window_for_iracing(window: &tauri::WebviewWindow) {
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_opener::init())
+        .plugin(tauri_plugin_window_state::Builder::default().build())
         .invoke_handler(tauri::generate_handler![send_key])
         .setup(|_app| {
             #[cfg(target_os = "windows")]
