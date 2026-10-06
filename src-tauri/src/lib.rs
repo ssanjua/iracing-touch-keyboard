@@ -26,6 +26,12 @@ fn parse_key(s: &str) -> Option<Key> {
         "ENTER" => Some(Key::Return),
         "ESC" | "ESCAPE" => Some(Key::Escape),
         "TAB" => Some(Key::Tab),
+        "VOLUME_UP" | "VOL_UP" => Some(Key::VolumeUp),
+        "VOLUME_DOWN" | "VOL_DOWN" => Some(Key::VolumeDown),
+        "VOLUME_MUTE" | "VOL_MUTE" | "MUTE" => Some(Key::VolumeMute),
+        "MEDIA_PLAY_PAUSE" | "PLAY_PAUSE" => Some(Key::MediaPlayPause),
+        "MEDIA_NEXT" | "NEXT_TRACK" | "NEXT" => Some(Key::MediaNextTrack),
+        "MEDIA_PREV" | "PREV_TRACK" | "PREV" => Some(Key::MediaPrevTrack),
         _ if s.chars().count() == 1 => s.chars().next().map(Key::Unicode),
         _ => None,
     }
@@ -37,12 +43,10 @@ fn configure_window_for_iracing(window: &tauri::WebviewWindow) {
         GetWindowLongPtrW, SetWindowLongPtrW, GWL_EXSTYLE, WS_EX_NOACTIVATE,
     };
 
-    // Look like a device, not an app window.
     let _ = window.set_decorations(false);
     let _ = window.set_always_on_top(true);
     let _ = window.set_skip_taskbar(true);
 
-    // Critical: prevent the window from stealing focus from iRacing on touch.
     if let Ok(hwnd) = window.hwnd() {
         unsafe {
             let current = GetWindowLongPtrW(hwnd, GWL_EXSTYLE);
